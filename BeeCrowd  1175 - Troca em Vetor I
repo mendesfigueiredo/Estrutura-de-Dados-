@@ -1,0 +1,93 @@
+#include <stdio.h>
+
+struct Node{
+  int value;
+  Node *next;
+  
+  Node(int _value){
+    value = _value;
+    next = NULL;
+  }
+  Node(){
+    next = NULL;
+  }
+};
+
+struct List{
+    Node *start;
+    Node *end;
+    int c;
+    
+    List(){
+        start = NULL;
+        end = NULL;
+        c = 0;
+    }
+    
+    bool empty(){
+        return start == NULL;
+    }
+    
+    void pushFront(int value){
+        Node *n = new Node(value);
+        c++;
+        
+        if(empty()){
+            start = n;
+            end = n;
+            return;
+        }
+        n->next = start;
+        start = n;
+    }
+    
+    void pushBack(int value){
+        Node *n = new Node(value);
+        c++;
+        
+        if(empty()){
+            start = n;
+            end = n;
+            return;
+        }
+        end->next = n;
+        end = n;
+    }
+    
+    void print(){
+        Node *aux = start;
+        int index = 0;
+        while(aux != NULL){
+            printf("N[%d] = %d\n", index, aux->value);
+            aux = aux->next;
+            index++;
+        }
+    }
+    int size(){
+        return c;
+    }
+    void troca(){
+        Node *aux = start;
+        List posTrade;
+        int i = 0;
+        while(aux != NULL){
+            posTrade.pushFront(aux->value);
+            aux = aux->next;
+        }
+        posTrade.print();
+    }
+};
+
+
+int main(){
+    List l;
+    float valor;
+
+    for(int i = 0; i < 20; i++){
+        scanf("%f", &valor);
+        l.pushBack(valor);
+    }
+    l.troca();
+    
+    return 0;
+}
