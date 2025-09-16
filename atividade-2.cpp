@@ -138,9 +138,7 @@ struct List {
     
     void atv2(){
         Node *aux;
-        if(empty()){
-            printf("Vazia a lista");
-        }else if(size() <= 1){
+        if(size() <= 1){
             return;
         }else{
             aux = start->next->next;
@@ -162,4 +160,5 @@ int main() {
     l.atv2();
     l.print();
     return 0;
+
 }
